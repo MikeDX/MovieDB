@@ -1,15 +1,9 @@
 <?php
-    include('app.php');
+include('app.php');
 
-    class IMDbapi extends MovieAPI {
+class IMDbapi extends MovieAPI {
     public $result = array('status'=>'false','message'=>'Unknown error');
-    private $api_key = '';
-    private $url = 'http://imdbapi.net/api';
-
-    public function __construct($api = false)
-    {
-        $this->api_key = $api;
-    }
+    public $url = 'http://imdbapi.net/api';
 
     public function get($id = false,$type = 'json')
     {
@@ -18,7 +12,7 @@
             'id'   => $id,
             'type' => $type
         ];
-        return $this->_fetch($param);
+        return $this->_fetchpost($param);
     }
 
     public function title($title = false,$type = 'json')
@@ -28,7 +22,7 @@
             'title' => $title,
             'type'  => $type
         ];
-        return $this->_fetch($param);
+        return $this->_fetchpost($param);
     }
 
     public function search($keyword = '', $id = '', $year = '',$page = 0,$type = 'json')
@@ -41,18 +35,7 @@
             'page'  => $page,
             'type'  => $type
         ];
-        return $this->_fetch($param);
+        return $this->_fetchpost($param);
     }
 
-    private function _fetch($param) {
-        $ch = curl_init($this->url);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_POST, count($param));
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $param);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER , true);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST  , 2);
-        $result = curl_exec($ch);
-        curl_close($ch);
-        return $result;
-    }
 }
