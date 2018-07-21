@@ -1,0 +1,9 @@
+<?php
+// Configure this for your api keys
+// and save as app.inc
+$config = [
+	'imdbapi_key' 	 => "",
+	'omdbapi_key' 	 => "",
+	'themoviedb_key' => ""
+];
+
