@@ -13,7 +13,7 @@ class MovieAPI {
         $this->api_key = $api;
     }
 
-    public function _fetchpost($param) {
+    public function fetchpost($param) {
         $ch = curl_init($this->url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_POST, count($param));
@@ -24,10 +24,9 @@ class MovieAPI {
         curl_close($ch);
         return $result;
     }
-	public function _fetchget($params) {
+	public function fetchget($params) {
 
 		// construct URL for get requests
-		$params['apikey'] = $this->api_key;
 		$data = '';
 
 	    foreach($params as $key=>$value)

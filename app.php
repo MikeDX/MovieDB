@@ -3,3 +3,4 @@
 	require_once("movieapi.php");
 	require_once("IMDBapi.php");
 	require_once("omdbapi.php");
+	require_once("tmdbapi.php");

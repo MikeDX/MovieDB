@@ -11,7 +11,12 @@ Class OMDBAPI extends MovieAPI {
 			"s" => $keyword
 		];
 
-		return $this->_fetchget($params);
+		return $this->_fetch($params);
+	}
+
+	private function _fetch($params) {
+		$params['apikey'] = $this->api_key;
+		return $this->fetchget($params);
 	}
 
 }

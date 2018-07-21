@@ -10,10 +10,14 @@ Class TMDBAPI extends MovieAPI {
 	{
 		$this->url = $this->base_url . "search/movie";
 		$params = [
-			"s" => $keyword
+			"query" => $keyword
 		];
 
-		return $this->_fetchget($params);
+		return $this->_fetch($params);
 	}
 
+	private function _fetch($params){
+		$params['api_key'] = $this->api_key;
+		return $this->fetchget($params);
+	}
 }
