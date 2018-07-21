@@ -1,8 +1,13 @@
+<?php
+include ("app.php");
+$source = $_GET('source');
+$id = 
+?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 <head>
 	<meta http-equiv="content-type" content="text/html; charset=utf-8">
-	<title>Movie title search engine</title>
+	<title>Film info: <?php echo $title; ?></title>
 	<!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <!-- jQuery library -->
@@ -15,17 +20,12 @@
 <body>
 
 <div class="container">
-<p class='h1'>The Greatest FIAB Movie searcher</p>
+<p class='h1'>Movie Information for <?php echo $title; ?></p>
 <div class="row justify-content-md-center">
   <div class="col">
-    <div class="form-group">
-      <label for="movietitle">Movie Title (or part of)</label>
-      <input type="text" class="form-control" id="movietitle" aria-describedby="movieInfo" placeholder="Search for a Movie">
-      <small id="movieInfo" class="form-text text-muted">Use one of 3 different databases to search for a movie</small>
-    </div>
   </div>
 </div>
-<script type="text/javascript">
+ <script type="text/javascript">
   $(function() {
     $.getJSON("/api.php?req=providers").done(function(data) {
       // show providers available
