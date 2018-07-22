@@ -11,7 +11,7 @@ class IMDbapi extends MovieAPI {
             'id'   => $id,
             'type' => $type
         ];
-        return $this->_fetch($param);
+        $result = $this->_fetch($param);
     }
 
     public function title($title = false, $type = 'json')
@@ -32,12 +32,37 @@ class IMDbapi extends MovieAPI {
             'page'  => $page,
             'type'  => $type
         ];
-        return $this->_fetch($param);
+        $result = $this->_fetch($param);
+        print_r($result);
     }
 
     private function _fetch($param) {
         $param ['key'] = $this->api_key;
-        return $this->fetchpost($param);
+        $data = $this->fetchpost($param);
+        // Convert result to our standard result array
+        $result = $data;
+
+//        print_r($data);
+        switch($this->method) {
+            case "search":
+                // echo "Formatting search results";
+                // Currently search only returns one result
+                $result = [
+                    "results" => [
+                        [
+                            "title" => $data->title,
+                            "year" => $data->year,
+                            "image" => $data->poster,
+                            "imdbID" => $data->imdb_id,
+                            "provider" => "imdb"
+                        ]
+                    ]
+                ];
+
+                break;
+        }
+
+        return json_encode($result);
     }
 
 }

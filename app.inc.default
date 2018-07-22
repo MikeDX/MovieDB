@@ -4,6 +4,6 @@
 $config = [
 	'imdbapi_key' 	 => "",
 	'omdbapi_key' 	 => "",
-	'themoviedb_key' => ""
+	'tmdb_key' => ""
 ];
 

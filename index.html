@@ -1,19 +1,4 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html lang="en">
-<head>
-	<meta http-equiv="content-type" content="text/html; charset=utf-8">
-	<title>Movie title search engine</title>
-	<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-<!-- jQuery library -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
-<!-- Latest compiled JavaScript -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-</head>
-<body>
-
+<?php include('header.php'); ?>
 <div class="container">
 <p class='h1'>The Greatest FIAB Movie searcher</p>
 <div class="row justify-content-md-center">
@@ -21,21 +6,40 @@
     <div class="form-group">
       <label for="movietitle">Movie Title (or part of)</label>
       <input type="text" class="form-control" id="movietitle" aria-describedby="movieInfo" placeholder="Search for a Movie">
-      <small id="movieInfo" class="form-text text-muted">Use one of 3 different databases to search for a movie</small>
+      <small id="movieInfo" class="form-text text-muted">Use different databases to search for a movie</small>
+      <div id='buttons'>
+      </div>
     </div>
   </div>
+</div>
+<div class="container">
+<div class="row info-panel justify-content-md-center" id='search_results'>
+</div>
 </div>
 <script type="text/javascript">
   $(function() {
     $.getJSON("/api.php?req=providers").done(function(data) {
-      // show providers available
-    });
-    $("#movietitle").change(function() {
-      $.getJSON("/api.php?req=search&q="+this.value).done(function(data) {
-        // show results
+      $.each(data, function(i, item) {
+        $('#buttons').append('<button type="button" class="btn btn-primary" id="'+item.provider+'">'+item.name+'</button>\n');
       });
+      // show providers available
+      $(".btn").click(function() {
+        $('#search_results').empty();
+        $('#search_results').append('<div class="card"><img src="/spin.gif"></div>');
+        $.getJSON("/api.php?req=search&q="+$('#movietitle').val()+"&provider="+this.id).done(function(data) {
+          // show results
+          $('#search_results').empty();
+          $.each(data.results, function(i, item) {
+            $("#search_results").append('<div class="card" style="width: 18rem;"> \
+  <div class="card-body"> \
+    <h5 class="card-title">'+item.title+' ('+item.year+')</h5> \
+    <a href="/show.php?id='+item.imdbID+'&provider='+item.provider+'" class="btn btn-primary">More info</a> \
+  </div> \
+</div>');
+          })
+        })
+      });    
     });
   });
 </script>
-</body>
-</html>
+<?php include ('footer.php'); ?>
