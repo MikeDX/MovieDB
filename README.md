@@ -15,5 +15,5 @@ extendable small php / jquery app for querying different online movie databases
 * Pressing "Back" after clicking "more info" does not re-display the search results
 * The original IMDB api php file wasn't very DRY, and had various issues, so it has been refactored.
 * The moviedb class was introduced for a common interface for different movie db api endpoints and can support others easily
-* If uaes seriously, some code should be changed to hide the api keys, currently this is only setup for convenience.
+* If used seriously, some code should be changed to hide the api keys, currently this is only setup for convenience.
 * All code has been checked via codesniffer, so whilst it may not follow the standards that everyone would choose, it should be consistent throughout in teems of spacing, formatting and doc blocks
