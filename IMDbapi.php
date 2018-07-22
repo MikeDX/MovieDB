@@ -35,8 +35,7 @@ class IMDbapi extends MovieAPI
             'page'  => $page,
             'type'  => $type
         ];
-        $result = $this->_fetch($param);
-        print_r($result);
+        return($this->_fetch($param));
     }
 
     private function _fetch($param)
@@ -49,7 +48,6 @@ class IMDbapi extends MovieAPI
         //        print_r($data);
         switch($this->method) {
         case "search":
-            // echo "Formatting search results";
             // Currently search only returns one result
             $result = [
                 "results" => [

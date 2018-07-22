@@ -6,9 +6,8 @@ require_once 'app.php';
 switch($_GET['req']) {
 case "providers":
     $providers = ['imdb' => 'IMDB','omdb' => 'OMDB','tmdb' => 'TMDB'];
-    //        print_r($providers);
     $results = [];
-    foreach($providers as $provider => $name) {
+    foreach ($providers as $provider => $name) {
         $results[]=['provider' => $provider, 'name' => $name];
     }
     print_r(json_encode($results));

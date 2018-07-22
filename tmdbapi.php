@@ -35,7 +35,7 @@ Class TMDbapi extends MovieAPI
         case "search":
             //                echo "Formatting search results";
             // Currently search only returns one result
-            foreach($data->results as $movie) {
+            foreach ($data->results as $movie) {
                 $result["results"][] = [
                 "title" => $movie->title,
                 "year" => date("Y", strtotime($movie->release_date)),

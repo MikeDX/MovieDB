@@ -1,19 +1,13 @@
 <?php
-// runtests
+/**
+    Run Tests
+ **/
+
 require_once 'app.php';
-    echo "\nTesting IMDB API\n";
-    $imdb = new IMDbapi($config['imdbapi_key']);
-//    $data = $imdb->search('batman','',99);
-    //print_r($data);
-
-    echo "\nTesting OMDB API\n";
-    $omdb = new OMDbapi($config['omdbapi_key']);
-//    $data = $omdb->search('batman');
-    //print_r($data);
-
-    echo "\nTesting TMDB API\n";
-    $tmdb = new TMDbapi($config['themoviedb_key']);
-    $data = $tmdb->search('batman');
-    //print_r($data);
-
-    echo "\nDONE\n";
+	$providers = ['imdb','omdb','tmdb'];
+	foreach ($providers as $provider) {
+		$api = getAPI($provider,$config);
+		echo "Testing {$provider} API\n";
+	    $data = $api->search('batman');
+	}
+	echo "Done\n";

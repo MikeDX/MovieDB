@@ -7,8 +7,7 @@ class MovieAPI
 
     public function __construct($api = '')
     {
-        if($api == '') {
-            print_r(debug_backtrace());
+        if ($api == '') {
             echo("Api is not configured");
             die();
         }
@@ -36,7 +35,7 @@ class MovieAPI
         // construct URL for get requests
         $data = '';
 
-        foreach($params as $key=>$value) {
+        foreach ($params as $key=>$value) {
             $data .= $key.'='.$value.'&';
         }         
 
@@ -53,7 +52,7 @@ class MovieAPI
         $result = curl_exec($ch);
         curl_close($ch);
 
-        if(!$result) {
+        if (!$result) {
             $this->error = json_encode(['No results']);
         }
         return json_decode($result);

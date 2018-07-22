@@ -34,7 +34,7 @@ Class OMDbapi extends MovieAPI
         $params['apikey'] = $this->api_key;
         $data = $this->fetchget($params);
 
-        if(!$data) {
+        if (!$data) {
             print_r($this->error);
             die();
         }
@@ -46,7 +46,7 @@ Class OMDbapi extends MovieAPI
         case "search":
             //                echo "Formatting search results";
             // Currently search only returns one result
-            foreach($data->Search as $movie) {
+            foreach ($data->Search as $movie) {
                 $result["results"][] = [
                 "title" => $movie->Title,
                 "year" => $movie->Year,
