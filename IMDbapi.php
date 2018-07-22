@@ -92,9 +92,6 @@ class IMDbapi extends MovieAPI
         $params ['key'] = $this->api_key;
         $data = $this->fetchpost($params);
         // Convert result to our standard result array
-        $result = $data;
-
-        //        print_r($data);
         switch($this->method) {
         case "search":
             // Currently search only returns one result
