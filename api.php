@@ -1,4 +1,15 @@
 <?php
+/**
+ * PHP Version 5
+ * API handler for web clients
+ *
+ * @category MoveDBSearch_Api
+ * @package  MovieDBSearch
+ * @author   Mike Green <mikedx@gmail.com>
+ * @license  http://www.gnu.org/copyleft/gpl.html GNU General Public License
+ * @link     http://github.com/MikeDX
+ */
+
 require_once 'app.php';
 
 // Handle get requests

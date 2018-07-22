@@ -1,4 +1,17 @@
-<?php require 'header.php'; ?>
+<?php
+/**
+ * PHP Version 5
+ * Main user facing File
+ *
+ * @category Frontend
+ * @package  MovieDBSearch
+ * @author   Mike Green <mikedx@gmail.com>
+ * @license  http://www.gnu.org/copyleft/gpl.html GNU General Public License
+ * @link     http://github.com/MikeDX
+ */
+
+require 'header.php';
+?>
 <div class="container">
 <p class='h1'>The Greatest FIAB Movie searcher</p>
 <div class="row justify-content-md-center">
