@@ -1,5 +1,5 @@
 <?php
-include('app.php');
+include_once('app.php');
 
 Class OMDbapi extends MovieAPI {
 	
@@ -18,6 +18,13 @@ Class OMDbapi extends MovieAPI {
 
 	public function get($id = '')
 	{
+        $params = [
+            "i" => $id
+        ];
+
+        $result = $this->_fetch($params);
+//        print_r($result);
+        return($result);
 
 	}
 
@@ -46,6 +53,16 @@ Class OMDbapi extends MovieAPI {
                     "provider" => "omdb"
                 ];
 
+                break;
+            case "get":
+                $result = [
+                    "title" => $data->Title,
+                    "year" => $data->Year,
+                    "image" => $data->Poster,
+                    "imdbID" => $data->imdbID,
+                    "plot" => $data->Plot,
+                    "provider" => "omdb"
+                ];
                 break;
 
         }

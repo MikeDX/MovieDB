@@ -1,6 +1,6 @@
 <?php
 // runtests
-include('app.php');
+include_once('app.php');
 	echo "\nTesting IMDB API\n";
 	$imdb = new IMDbapi($config['imdbapi_key']);
 //	$data = $imdb->search('batman','',99);

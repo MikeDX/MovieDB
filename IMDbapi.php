@@ -1,5 +1,6 @@
 <?php
-include('app.php');
+include_once('app.php');
+
 
 class IMDbapi extends MovieAPI {
     public $result = array('status'=>'false','message'=>'Unknown error');
@@ -11,7 +12,8 @@ class IMDbapi extends MovieAPI {
             'id'   => $id,
             'type' => $type
         ];
-        $result = $this->_fetch($param);
+        return $this->_fetch($param);
+
     }
 
     public function title($title = false, $type = 'json')
@@ -60,6 +62,17 @@ class IMDbapi extends MovieAPI {
                 ];
 
                 break;
+            case "get":
+                $result = [
+                    "title" => $data->title,
+                    "year" => $data->year,
+                    "image" => $data->poster,
+                    "imdbID" => $data->imdb_id,
+                    "plot" => $data->plot,
+                    "provider" => "imdb"
+                ];
+                break;
+
         }
 
         return json_encode($result);

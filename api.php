@@ -1,5 +1,5 @@
 <?php
-include('app.php');
+include_once('app.php');
 
 // Handle get requests
 
@@ -15,19 +15,7 @@ switch($_GET['req']) {
 		break;
 
 	case "search":
-		switch($_GET['provider']) {
-			case 'imdb':
-				$api = new IMDbapi($config['imdbapi_key']);
-				break;
-			case 'omdb':
-				$api = new OMDbapi($config['omdbapi_key']);
-				break;
-			case 'tmdb':
-				$api = new TMDbapi($config['tmdbapi_key']);
-				break;
-			default:
-				die();
-		}
+		$api = getAPI($_GET['provider'],$config);
 		$data = $api->search(urlencode($_GET['q']));
 		echo $data;
 		break;

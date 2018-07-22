@@ -7,6 +7,7 @@ class MovieAPI {
     public function __construct($api = '')
     {
     	if($api == '') {
+            print_r(debug_backtrace());
     		echo("Api is not configured");
     		die();
     	}

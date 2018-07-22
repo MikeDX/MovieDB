@@ -1,5 +1,5 @@
 <?php
-include('app.php');
+include_once('app.php');
 
 Class TMDbapi extends MovieAPI {
 	
@@ -18,7 +18,19 @@ Class TMDbapi extends MovieAPI {
         return($result);
 	}
 
-	private function _fetch($params){
+    public function get($id='')
+    {
+        $this->url = $this->base_url . "search/movie";
+        $params = [
+            "query" => $keyword
+        ];
+
+        $result = $this->_fetch($params);
+
+    }
+
+
+	private function _fetch($params) {
 		$params['api_key'] = $this->api_key;
         $data = $this->fetchget($params);
         // Convert result to our standard result array
