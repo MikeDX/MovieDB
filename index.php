@@ -1,4 +1,4 @@
-<?php include('header.php'); ?>
+<?php require 'header.php'; ?>
 <div class="container">
 <p class='h1'>The Greatest FIAB Movie searcher</p>
 <div class="row justify-content-md-center">
@@ -42,4 +42,4 @@
     });
   });
 </script>
-<?php include ('footer.php'); ?>
+<?php require 'footer.php'; ?>

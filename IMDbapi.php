@@ -1,8 +1,9 @@
 <?php
-include_once('app.php');
+require_once 'app.php';
 
 
-class IMDbapi extends MovieAPI {
+class IMDbapi extends MovieAPI
+{
     public $result = array('status'=>'false','message'=>'Unknown error');
     public $url = 'http://imdbapi.net/api';
 
@@ -38,40 +39,41 @@ class IMDbapi extends MovieAPI {
         print_r($result);
     }
 
-    private function _fetch($param) {
+    private function _fetch($param)
+    {
         $param ['key'] = $this->api_key;
         $data = $this->fetchpost($param);
         // Convert result to our standard result array
         $result = $data;
 
-//        print_r($data);
+        //        print_r($data);
         switch($this->method) {
-            case "search":
-                // echo "Formatting search results";
-                // Currently search only returns one result
-                $result = [
-                    "results" => [
-                        [
-                            "title" => $data->title,
-                            "year" => $data->year,
-                            "image" => $data->poster,
-                            "imdbID" => $data->imdb_id,
-                            "provider" => "imdb"
-                        ]
+        case "search":
+            // echo "Formatting search results";
+            // Currently search only returns one result
+            $result = [
+                "results" => [
+                    [
+                        "title" => $data->title,
+                        "year" => $data->year,
+                        "image" => $data->poster,
+                        "imdbID" => $data->imdb_id,
+                        "provider" => "imdb"
                     ]
-                ];
+                ]
+            ];
 
-                break;
-            case "get":
-                $result = [
-                    "title" => $data->title,
-                    "year" => $data->year,
-                    "image" => $data->poster,
-                    "imdbID" => $data->imdb_id,
-                    "plot" => $data->plot,
-                    "provider" => "imdb"
-                ];
-                break;
+            break;
+        case "get":
+            $result = [
+                "title" => $data->title,
+                "year" => $data->year,
+                "image" => $data->poster,
+                "imdbID" => $data->imdb_id,
+                "plot" => $data->plot,
+                "provider" => "imdb"
+            ];
+            break;
 
         }
 
